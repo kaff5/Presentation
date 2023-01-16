@@ -1,0 +1,28 @@
+﻿@model Presentation1.ViewModels.BookViewModel
+
+@{
+    ViewData["Title"] = "BookGuid";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="mb-3">
+            <p>Id: @Model.Id</p>
+        </div>
+        <div class="mb-3">
+            <p>Название: @Model.Name</p>
+        </div>
+        <div class="mb-3">
+            <p>Цена: @Model.Price</p>
+
+        </div>
+        <div class="mb-3">
+            <p>Описание: @Model.Description</p>
+        </div>
+        <div class="mb-3">
+            <p>Title: @Model.Title</p>
+        </div>
+        <div class="mb-3">
+            <h5 class="card-title mb-0 text-danger">Тип: @Model.Type</h5>
+        </div>
+    </div>
+</div>

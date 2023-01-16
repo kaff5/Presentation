@@ -1,0 +1,57 @@
+﻿@model Presentation1.ViewModels.BooksViewModel;
+
+<a class="btn btn-outline-primary" asp-action="CreateBookGuid" asp-controller="Book">Создать BookGuid</a>
+<a class="btn btn-outline-primary" asp-action="CreateBookObjectId" asp-controller="Book">Создать BookObjectid</a>
+<a class="btn btn-outline-primary" asp-action="CreateTwoBooksObjectIdAtOnce" asp-controller="Book">Создать два BookObjectId в разных потоках</a>
+<a class="btn btn-outline-primary" asp-action="CreateTwoBooksGuidAtOnce" asp-controller="Book">Создать два BookGuid в разных потоках</a>
+
+
+<div class="mt-5"></div>
+<div class="row">
+    <div class="col-12">
+        <div class="row row-cols-3 row-cols-md-2 g-8">
+
+            @foreach (var book in Model.Books)
+            {
+                <div class="col mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            @if (book.Id.Length == 36)
+                            {
+                                <a class="text-decoration-none text-black" asp-action="BookGuid" asp-controller="Book" asp-route-id="@book.Id">Id: @book.Id</a>
+                            }
+                            else
+                            {
+                                <a class="text-decoration-none text-black" asp-action="BookObjectId" asp-controller="Book" asp-route-id="@book.Id">Id: @book.Id</a>
+                            }
+                            <h5 class="card-title mb-0"></h5>
+                        </div>
+                        <div class="card-footer d-flex flex-column">
+                            <h5 class="card-title mb-0">Имя: @book.Name</h5>
+                            @if (book.Name == "Дубликат")
+                            {
+                                <h5 class="card-title mb-0 text-primary">Тип: @book.Type</h5>
+                            }
+                            else
+                            {
+                                <h5 class="card-title mb-0 text-danger">Тип: @book.Type</h5>
+                            }
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            @if (book.Id.Length == 36)
+                            {
+                                <a class="btn btn-outline-danger" asp-action="DeleteBookGuid" asp-controller="Book" asp-route-id="@book.Id"><i class="fas fa-trash-alt"></i></a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-outline-danger" asp-action="DeleteBookObjectId" asp-controller="Book" asp-route-id="@book.Id"><i class="fas fa-trash-alt"></i></a>
+                            }
+                            <a class="btn btn-outline-warning" asp-action="EditBook" asp-controller="Book" asp-route-id="@book.Id"><i class="fas fa-pen"></i></a>
+                           
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
